@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="3e étage" />
+    <meta name="theme-color" content="#2b1838" />
+    <title>3e étage — Montréal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="game">
+      <canvas id="world"></canvas>
+      <div id="background"></div>
+      <div id="characters"></div>
+
+      <!-- Exploration -->
+      <div id="room-ui" class="hidden">
+        <div id="room-title"></div>
+        <div id="room-hint"></div>
+        <div id="room-actions"></div>
+      </div>
+
+      <!-- Chat libre (IA) -->
+      <div id="chat" class="hidden">
+        <div id="chat-header">
+          <span id="chat-avatar"></span>
+          <div><b id="chat-name"></b><small id="chat-status"></small></div>
+          <button id="chat-close" title="Fermer">✕</button>
+        </div>
+        <div id="chat-log"></div>
+        <form id="chat-form" autocomplete="off">
+          <input id="chat-input" maxlength="300" placeholder="Écris quelque chose…" />
+          <button type="submit">➤</button>
+        </form>
+      </div>
+
+      <!-- HUD -->
+      <div id="hud" class="hidden">
+        <div id="hud-info"></div>
+        <div id="hud-buttons">
+          <button id="btn-map" title="Plan de l'immeuble">🗺️<span>Plan</span></button>
+          <button id="btn-affinity" title="Affinités">💗<span>Cœurs</span></button>
+          <button id="btn-save" title="Sauvegarder">💾<span>Sauver</span></button>
+          <button id="btn-load" title="Charger">📂<span>Charger</span></button>
+          <button id="btn-menu" title="Menu principal">🏠<span>Menu</span></button>
+        </div>
+      </div>
+      <div id="affinity-panel" class="hidden"></div>
+
+      <!-- Dialogue -->
+      <div id="dialogue" class="hidden">
+        <div id="speaker-avatar" class="hidden"></div>
+        <div id="speaker"></div>
+        <div id="text"></div>
+        <div id="next-hint">▼</div>
+      </div>
+      <div id="choices"></div>
+
+      <!-- Plan -->
+      <div id="map" class="hidden">
+        <div class="map-card">
+          <div class="map-header">
+            <h2>🏢 Immeuble Les Érables</h2>
+            <button id="btn-map-close">✕</button>
+          </div>
+          <div id="building"></div>
+          <p class="map-tip">Clique sur une pièce pour t'y rendre.</p>
+        </div>
+      </div>
+
+      <!-- Écrans -->
+      <div id="title-screen" class="screen">
+        <div class="title-block">
+          <p class="kicker">Un otome game d'échange étudiant</p>
+          <h1>3<sup>e</sup> étage</h1>
+          <p class="subtitle">Montréal ✦ 4 mois ✦ des voisines ✦ beaucoup trop de drama</p>
+          <div class="title-buttons">
+            <button id="btn-new" class="btn-primary">Nouvelle partie</button>
+            <button id="btn-continue" class="btn-ghost">Continuer</button>
+          </div>
+        </div>
+        <div id="title-lineup"></div>
+      </div>
+
+      <div id="select-screen" class="screen hidden">
+        <h2>Qui veux-tu incarner ?</h2>
+        <div id="select-cards"></div>
+        <button id="btn-select-back" class="btn-ghost">← Retour</button>
+      </div>
+
+      <div id="ending-screen" class="screen hidden">
+        <p class="kicker">Fin</p>
+        <h2 id="ending-title"></h2>
+        <div id="ending-stats"></div>
+        <button id="btn-ending-menu" class="btn-primary">Retour au menu</button>
+      </div>
+
+      <div id="toast"></div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

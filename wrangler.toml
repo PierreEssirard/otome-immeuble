@@ -1,0 +1,8 @@
+# Config du Cloudflare Worker (API de chat pour la version en ligne)
+name = "otome-chat"
+main = "server/worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Domaines autorisés à appeler l'API (ton site GitHub Pages), séparés par des virgules
+ALLOWED_ORIGINS = ""
