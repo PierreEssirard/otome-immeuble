@@ -8,8 +8,14 @@ const EMOTIONS = ['neutral', 'happy', 'sad', 'angry', 'surprised', 'blush', 'awk
 
 // Quand le jeu est publié comme page Claude (claude.ai / app iOS), l'IA passe
 // par la capacité « sample » de la page : pas de clé API ni de serveur.
-const samplePromise =
-  typeof window !== 'undefined' && window.claude?.use ? window.claude.use('sample').catch(() => null) : Promise.resolve(null)
+let samplePromise = null
+function getSample() {
+  if (!samplePromise && typeof window !== 'undefined' && window.claude?.use) {
+    samplePromise = window.claude.use('sample').catch(() => null)
+  }
+  return samplePromise || Promise.resolve(null)
+}
+setTimeout(getSample, 0)
 
 function readReply(content) {
   try {
@@ -24,7 +30,7 @@ function readReply(content) {
  * messages : [{ role: 'user'|'assistant', content }]
  */
 export async function askCharacter(npc, system, messages, names = {}) {
-  const sample = await Promise.race([samplePromise, new Promise((r) => setTimeout(() => r(null), 1500))])
+  const sample = await getSample()
   if (sample) {
     try {
       const transcript = messages
